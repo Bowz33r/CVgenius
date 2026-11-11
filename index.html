@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CVGENIUS – CV, Cover Letter & Job Tracker</title>
+<meta name="description" content="Build a standout CV in minutes. 10 templates, live preview, PDF download, cover letters and a job tracker.">
+<meta name="theme-color" content="#0d1226">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27><text y=%27.9em%27 font-size=%2790%27>📄</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=DM+Sans:wght@400;500;700&family=Fraunces:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root{--ink:#0d1226;--mut:#5b6178;--bg:#f4f6fb;--card:#fff;--line:#e3e7f1;--ac:#4338ca;--gold:#f5b942;--r:14px}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{font:16px/1.5 'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);padding-bottom:76px}
+h1,h2,h3,.brand{font-family:'Bricolage Grotesque',sans-serif;letter-spacing:-.02em}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+header.top{position:sticky;top:0;z-index:20;background:var(--ink);color:#fff;display:flex;align-items:center;gap:16px;padding:10px 16px;padding-top:calc(10px + env(safe-area-inset-top))}
+.brand{font-size:22px;font-weight:800;border:0;background:none;color:#fff}
+.brand b{color:var(--gold)}
+.badge{margin-left:auto;font-size:13px;padding:6px 12px;border-radius:99px;border:1px solid #ffffff44;background:none;color:#fff}
+.badge.pro{background:var(--gold);color:var(--ink);border-color:var(--gold);font-weight:700}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:20;background:#fff;border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;border:0;background:none;padding:8px 2px;font-size:11px;color:var(--mut);display:grid;gap:2px;justify-items:center}
+nav button span{font-size:20px}
+nav button.on{color:var(--ac);font-weight:700}
+.v{display:none;max-width:1280px;margin:auto;padding:16px}
+.v.on{display:block}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:12px;border:0;font-weight:700;background:var(--ac);color:#fff;text-decoration:none}
+.btn.gold{background:var(--gold);color:var(--ink)}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn.sm{min-height:40px;padding:0 14px;font-size:14px}
+/* home */
+.hero{background:var(--ink);color:#fff;border-radius:22px;padding:32px 22px;display:grid;gap:24px;overflow:hidden}
+.hero h1{font-size:clamp(38px,9vw,76px);line-height:1;font-weight:800}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{color:#c4c9e0;max-width:520px;margin:14px 0 22px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.mini{background:#fff;color:#1e293b;border-radius:6px;padding:16px;font-size:8px;line-height:1.4;transform:rotate(2deg);box-shadow:0 20px 50px #0008;max-width:320px;justify-self:center;width:100%}
+.mini h4{font:800 17px 'Bricolage Grotesque';color:var(--ac)}
+.mini i{display:block;height:5px;background:#e3e7f1;border-radius:3px;margin:5px 0}
+.feat{display:grid;gap:12px;margin:18px 0}
+.feat div{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.feat b{display:block;font-size:17px;margin-bottom:4px}
+.feat p{color:var(--mut);font-size:15px}
+.samples{display:grid;gap:10px}
+.sam{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:12px;text-align:left}
+.sam .av{width:44px;height:44px;border-radius:50%;background:var(--ac);color:#fff;display:grid;place-items:center;font-weight:800}
+.sam small{color:var(--mut);display:block}
+h2.s{font-size:26px;margin:26px 0 12px}
+/* builder */
+.seg{display:flex;background:#e6e9f4;border-radius:12px;padding:4px;margin-bottom:12px;position:sticky;top:58px;z-index:5}
+.seg button{flex:1;border:0;background:none;min-height:42px;border-radius:9px;font-weight:700;color:var(--mut)}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 4px #0002}
+.bd{display:grid;gap:16px}
+.bd .pv{display:none}
+.bd.showpv .pv{display:block}.bd.showpv .ed{display:none}
+.strip{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;scroll-snap-type:x mandatory}
+.tc{flex:0 0 92px;scroll-snap-align:start;border:2px solid var(--line);border-radius:10px;background:#fff;padding:6px;text-align:center;font-size:12px;font-weight:700;position:relative}
+.tc.on{border-color:var(--ac);box-shadow:0 0 0 2px #4338ca33}
+.tc .th{height:54px;border-radius:5px;background:#eef0f8;margin-bottom:4px;display:flex;overflow:hidden}
+.tc .th u{flex:0 0 32%;background:var(--ac);opacity:.85}
+.tc .th.one u,.tc .th.band u{flex:none;width:100%;height:14px;opacity:.9}
+.tc .th.one,.tc .th.band{flex-direction:column;gap:3px}
+.tc .th.right{flex-direction:row-reverse}
+.tc em{position:absolute;top:2px;right:2px;font-style:normal;font-size:10px;background:var(--gold);border-radius:6px;padding:0 4px}
+.sw{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:6px 0 12px}
+.sw button{width:34px;height:34px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1px var(--line)}
+.sw button.on{box-shadow:0 0 0 3px var(--ink)}
+.sw input[type=color]{width:42px;height:34px;border:0;padding:0;background:none}
+details{background:#fff;border:1px solid var(--line);border-radius:var(--r);margin-bottom:10px}
+summary{padding:14px 16px;font-weight:700;cursor:pointer;list-style:none;display:flex;justify-content:space-between}
+summary::after{content:'+';color:var(--ac);font-size:20px;line-height:1}
+details[open] summary::after{content:'–'}
+details>div,details>.in{padding:0 16px 14px}
+label{display:block;font-size:13px;font-weight:700;color:var(--mut);margin-top:10px}
+input:not([type=color]),select,textarea{width:100%;margin-top:4px;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fbfcff;font-size:16px}
+.card{border:1px dashed var(--line);border-radius:10px;padding:2px 12px 12px;margin-top:10px}
+.lnk{background:none;border:0;color:#c0392b;font-weight:700;margin-top:8px;min-height:36px}
+.add{width:100%;margin-top:10px}
+.pvw{background:#cfd4e6;border-radius:var(--r);padding:10px;overflow:hidden}
+.pvbox{position:relative;width:100%}
+.page{width:794px;min-height:1123px;background:#fff;transform-origin:top left;position:absolute;top:0;left:0;box-shadow:0 6px 24px #0003}
+/* CV styles */
+.cv{--c:#4338ca;font:13px/1.5 Inter,'DM Sans',sans-serif;color:#1e293b;padding:44px;min-height:1123px;position:relative;background:#fff}
+.cv h1{font:800 34px/1.1 'Bricolage Grotesque';color:#0f172a}
+.cv h2{font-size:15px;font-weight:500;color:var(--c);margin-top:4px}
+.cv h3{font:700 11px 'DM Sans';color:var(--c);text-transform:uppercase;letter-spacing:.14em;border-bottom:1px solid #e2e8f0;padding-bottom:4px;margin:20px 0 9px}
+.cv .ct{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:10px;font-size:12px;color:#475569}
+.cv .r{display:flex;justify-content:space-between;gap:10px}
+.cv .r i{color:#64748b;font-size:12px;white-space:nowrap}
+.cv .s{color:var(--c);font-weight:600;font-size:12px}
+.cv .it{margin-bottom:11px}.cv p{margin-top:3px}
+.cv ul{padding-left:18px}
+.cv .pl span{display:inline-block;background:color-mix(in srgb,var(--c) 12%,#fff);color:#0f172a;border-radius:99px;padding:2px 10px;margin:0 5px 5px 0;font-size:12px}
+.cv .wm{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-size:10px;color:#94a3b8}
+.cols{display:flex;margin:-44px;min-height:1123px}
+.cols aside{width:244px;padding:44px 24px;flex:none}.cols main{flex:1;padding:44px 32px}
+.L-right .cols{flex-direction:row-reverse}
+.cols aside .ct{flex-direction:column;color:inherit}
+.cols aside h3,.cols aside h2{color:inherit;border-color:#ffffff55}
+.cols aside .it .s{color:inherit}
+.cols aside .pl span{background:#ffffff26;color:inherit}
+.modern aside,.bold aside{background:var(--c);color:#fff}
+.tech aside{background:#0f172a;color:#e2e8f0}.tech{font-family:'IBM Plex Mono',monospace;font-size:12px}
+.compact aside{background:#eef1f8}.compact{font-size:12px}
+.band header{margin:-44px -44px 6px;padding:40px 44px 28px;background:var(--c);color:#fff}
+.band header h1,.band header h2,.band .ct{color:#fff}
+.executive header{background:#0f172a}.executive header h2{color:var(--gold)}.executive{font-family:Fraunces,serif;font-size:13.5px}
+.executive h1,.elegant h1{font-family:Fraunces,serif;font-weight:600}
+.elegant{font-family:Fraunces,serif;font-size:13.5px}.elegant header{text-align:center}.elegant .ct{justify-content:center}
+.elegant h3{text-align:center;border:0;letter-spacing:.3em}
+.minimal h3{color:#64748b;border:0;letter-spacing:.2em}.minimal h1{font-weight:600}
+.classic h3{border-bottom:2px solid var(--c)}
+.timeline .it{border-left:2px solid var(--c);padding-left:14px;position:relative}
+.timeline .it::before{content:'';position:absolute;left:-6px;top:4px;width:10px;height:10px;border-radius:50%;background:var(--c)}
+.bar{display:flex;gap:8px;margin-top:12px}.bar .btn{flex:1}
+/* forms/pages */
+.pane{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.two{display:grid;gap:16px}
+.letter{padding:56px;min-height:1123px;background:#fff;color:#1e293b;font:14px/1.7 Georgia,serif;white-space:pre-wrap}
+.letter .lh{font:800 28px 'Bricolage Grotesque';color:var(--c);white-space:normal}
+.letter small{display:block;font:12px 'DM Sans';color:#64748b;margin-bottom:28px;white-space:normal}
+.cols5{display:grid;gap:10px}
+.col{background:#e9ecf6;border-radius:var(--r);padding:10px}
+.col h4{font-size:14px;margin-bottom:8px;display:flex;justify-content:space-between}
+.job{background:#fff;border-radius:10px;padding:10px;margin-bottom:8px;border:1px solid var(--line)}
+.job small{color:var(--mut);display:block}.job select{margin:8px 0 0;padding:6px;font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.stats div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
+.stats b{font:800 26px 'Bricolage Grotesque';display:block}
+.plans{display:grid;gap:14px}
+.plan{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px}
+.plan.pro{background:var(--ink);color:#fff;border-color:var(--ink)}
+.plan .pr{font:800 48px 'Bricolage Grotesque'}.plan .pr small{font:400 15px 'DM Sans';opacity:.7}
+.plan ul{list-style:none;padding:0;margin:14px 0 20px}.plan li{padding:5px 0 5px 24px;position:relative}
+.plan li::before{content:'✓';position:absolute;left:0;color:var(--gold);font-weight:800}
+.modal{position:fixed;inset:0;background:#0d1226cc;z-index:50;display:none;align-items:center;justify-content:center;padding:16px}
+.modal.on{display:flex}.modal>div{background:#fff;border-radius:20px;padding:24px;max-width:420px;width:100%}
+.modal h3{font-size:24px;margin-bottom:8px}.modal p{color:var(--mut);margin-bottom:16px}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:99px;z-index:60;display:none;font-size:14px}
+@media(min-width:860px){
+ body{padding-bottom:0}
+ nav{position:static;background:none;border:0;padding:0;margin-left:20px;order:2}
+ nav button{flex-direction:row;display:flex;gap:6px;color:#c4c9e0;font-size:15px;padding:8px 14px;border-radius:8px}
+ nav button span{font-size:15px}nav button.on{background:#ffffff1f;color:#fff}
+ header.top{flex-wrap:nowrap}.badge{order:3}
+ .hero{grid-template-columns:1.2fr 1fr;padding:56px;align-items:center}
+ .feat{grid-template-columns:repeat(4,1fr)}.samples{grid-template-columns:repeat(3,1fr)}
+ .seg{display:none}
+ .bd{grid-template-columns:minmax(340px,420px) 1fr;align-items:start}
+ .bd .pv,.bd.showpv .ed{display:block!important}
+ .pv{position:sticky;top:76px}
+ .two{grid-template-columns:380px 1fr}.cols5{grid-template-columns:repeat(5,1fr)}.plans{grid-template-columns:1fr 1fr;max-width:820px;margin:auto}
+}
+@media print{
+ @page{size:A4;margin:0}
+ body *{visibility:hidden}
+ body[data-p=cv] #cvp,body[data-p=cv] #cvp *,body[data-p=letter] #lp,body[data-p=letter] #lp *{visibility:visible}
+ #cvp,#lp{position:fixed!important;left:0;top:0;transform:none!important;width:210mm;box-shadow:none}
+ .cv,.cv *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<header class="top">
+ <button class="brand" data-go="home">CV<b>GENIUS</b></button>
+ <nav id="nav"></nav>
+ <button class="badge" id="plan" data-go="price">Free plan</button>
+</header>
+
+<main>
+<!-- HOME -->
+<section class="v on" id="v-home">
+ <div class="hero">
+  <div>
+   <h1>A CV that gets you the <em>interview.</em></h1>
+   <p>Fill in your details, watch your CV build itself, and download a clean PDF. Ten templates, a cover letter writer and a job tracker, all in one place.</p>
+   <div class="row"><button class="btn gold" data-demo="0">Try the live demo</button><button class="btn ghost" data-go="build">Start my CV – free</button></div>
+  </div>
+  <div class="mini"><h4>Amara Okafor</h4><b>Product Designer</b><i></i><i style="width:80%"></i><br><b>Experience</b><i></i><i></i><i style="width:60%"></i><br><b>Skills</b><i style="width:70%"></i></div>
+ </div>
+ <div class="feat">
+  <div><b>10 templates</b><p>Classic to creative. Switch in one tap, your content stays.</p></div>
+  <div><b>Live preview</b><p>Every keystroke updates your CV instantly, even on your phone.</p></div>
+  <div><b>PDF download</b><p>A4 print-ready PDF straight from your browser.</p></div>
+  <div><b>Private</b><p>Your data never leaves your device. No account needed.</p></div>
+ </div>
+ <h2 class="s">Open a sample profile</h2>
+ <div class="samples" id="samples"></div>
+</section>
+
+<!-- BUILDER -->
+<section class="v" id="v-build">
+ <div class="seg"><button class="on" data-pane="ed">✏️ Edit</button><button data-pane="pv">👁 Preview</button></div>
+ <div class="bd" id="bd">
+  <div class="ed">
+   <b>Template</b><div class="strip" id="tpl"></div>
+   <b>Colour</b><div class="sw" id="sw"></div>
+   <div id="form"></div>
+   <div class="bar"><button class="btn ghost" id="reset">Clear all</button></div>
+  </div>
+  <div class="pv">
+   <div class="pvw"><div class="pvbox" id="box1"><div class="page" id="cvp"></div></div></div>
+   <div class="bar"><button class="btn" id="pdf">⬇ Download PDF</button></div>
+  </div>
+ </div>
+</section>
+
+<!-- COVER LETTER -->
+<section class="v" id="v-letter">
+ <h2 class="s" style="margin-top:6px">Cover letter builder <small style="font-size:14px;background:var(--gold);padding:2px 8px;border-radius:8px">PRO</small></h2>
+ <div class="two">
+  <div class="pane">
+   <label>Hiring manager<input id="l-to" placeholder="e.g. Jordan Lee"></label>
+   <label>Company<input id="l-co" placeholder="e.g. Brightwave"></label>
+   <label>Role you're applying for<input id="l-role" placeholder="e.g. Marketing Manager"></label>
+   <label>Tone<select id="l-tone"><option>Professional</option><option>Friendly</option><option>Confident</option></select></label>
+   <button class="btn add" id="l-gen">✨ Write it from my CV</button>
+   <label>Edit your letter<textarea id="l-body" rows="12"></textarea></label>
+   <button class="btn gold add" id="l-pdf">⬇ Download letter PDF</button>
+  </div>
+  <div class="pvw"><div class="pvbox" id="box2"><div class="page" id="lp"></div></div></div>
+ </div>
+</section>
+
+<!-- TRACKER -->
+<section class="v" id="v-track">
+ <h2 class="s" style="margin-top:6px">Job application tracker</h2>
+ <div class="stats" id="stats"></div>
+ <div class="pane" style="margin-bottom:12px">
+  <div class="two" style="gap:0 12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+   <label>Company<input id="j-co"></label><label>Role<input id="j-role"></label>
+   <label>Date applied<input type="date" id="j-date"></label><label>Notes or link<input id="j-note"></label>
+  </div>
+  <button class="btn add" id="j-add">+ Add application</button>
+ </div>
+ <div class="cols5" id="board"></div>
+</section>
+
+<!-- PRICING -->
+<section class="v" id="v-price">
+ <h2 class="s" style="text-align:center;margin-top:6px">Simple pricing</h2>
+ <div class="plans">
+  <div class="plan"><h3>Free</h3><div class="pr">$0</div>
+   <ul><li>Build a full CV</li><li>3 templates and 4 colours</li><li>Live preview, all sections</li><li>PDF download (small footer)</li><li>Track up to 5 applications</li></ul>
+   <button class="btn ghost" style="width:100%" data-go="build">Start free</button></div>
+  <div class="plan pro"><h3>Premium</h3><div class="pr">$10<small> / year</small></div>
+   <ul><li>All 10 templates</li><li>Any custom colour</li><li>PDF with no footer</li><li>Cover letter builder</li><li>Unlimited job tracking</li></ul>
+   <button class="btn gold" style="width:100%" id="buy">Go Premium – $10/yr</button></div>
+ </div>
+</section>
+</main>
+
+<div class="modal" id="modal"><div>
+ <h3 id="m-t">Premium feature</h3>
+ <p id="m-p">Upgrade for $10 a year to unlock this.</p>
+ <div id="btc-checkout" style="display:none">
+  <p><b>Subscription price:</b> $10 USD / year</p>
+  <p style="margin-bottom:6px"><b>Pay with Bitcoin to this address:</b></p>
+  <div style="display:flex;gap:8px;align-items:stretch;margin-bottom:12px">
+   <input id="btc-address" readonly aria-label="Bitcoin payment address" value="1CHiggYcdzuEpiWVEnF2y7e83viyAhzh2m" style="min-width:0;margin:0;font-size:13px">
+   <button class="btn sm" type="button" id="btc-copy">Copy</button>
+  </div>
+  <p style="font-size:13px">Send the Bitcoin equivalent of $10 USD. The BTC amount depends on the exchange rate and network fees. Include your transaction ID when contacting the site administrator so payment can be verified.</p>
+  <p style="font-size:13px"><b>Premium is not activated automatically.</b> This website has no payment-verification server. An administrator must verify the transaction and activate your subscription.</p>
+ </div>
+ <button class="btn gold" style="width:100%" id="m-go">View Bitcoin payment details</button>
+ <button class="btn ghost" style="width:100%;margin-top:8px" id="m-x">Close</button>
+</div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============ PAYMENT CONFIG ============
+ Add a Stripe Payment Link if preferred. Otherwise the checkout displays the
+ Bitcoin address below. This static page cannot verify blockchain payments;
+ Premium must be activated by an administrator after transaction verification. */
+const STRIPE_LINK='';
+const BITCOIN_ADDRESS='1CHiggYcdzuEpiWVEnF2y7e83viyAhzh2m';
+
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const esc=x=>String(x??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const TPL=[
+ {id:'classic',n:'Classic',l:'one',f:1},{id:'modern',n:'Modern',l:'left',f:1},{id:'minimal',n:'Minimal',l:'one',f:1},
+ {id:'executive',n:'Executive',l:'band'},{id:'bold',n:'Bold',l:'right'},{id:'elegant',n:'Elegant',l:'one'},
+ {id:'tech',n:'Tech',l:'left'},{id:'creative',n:'Creative',l:'band'},{id:'compact',n:'Compact',l:'right'},{id:'timeline',n:'Timeline',l:'one'}];
+const COL=['#4338ca','#0f766e','#be123c','#1d4ed8','#b45309','#7e22ce','#0f172a','#047857'];
+const FREECOL=4;
+const BLANK={name:'',title:'',email:'',phone:'',loc:'',web:'',summary:'',exp:[],edu:[],skills:'',ach:'',refs:[]};
+const SAMPLES=[
+ {name:'Amara Okafor',title:'Senior Product Designer',email:'amara@example.com',phone:'+27 82 555 0142',loc:'Cape Town, South Africa',web:'amaradesigns.example',
+  summary:'Product designer with 8 years of experience shipping mobile and web products used by millions. I turn messy problems into simple, well-tested interfaces.',
+  exp:[{role:'Senior Product Designer',co:'Brightwave',dates:'2021 – Present',desc:'Led redesign of onboarding, lifting activation by 34%.\nBuilt and maintained a design system used by 12 squads.\nMentored 4 junior designers.'},
+       {role:'Product Designer',co:'Kite Labs',dates:'2017 – 2021',desc:'Shipped 20+ features across iOS, Android and web.\nRan weekly user research sessions with customers.'}],
+  edu:[{deg:'BA Interaction Design',school:'University of Cape Town',dates:'2013 – 2016'}],
+  skills:'Figma, User research, Prototyping, Design systems, Accessibility, HTML & CSS',
+  ach:'Webby Award nominee, 2023\nSpoke at Design Indaba 2022\nCut checkout drop-off by 21%',
+  refs:[{name:'Jordan Lee, Head of Design',info:'jordan@brightwave.example'},{name:'Priya Nair, CPO',info:'priya@kitelabs.example'}]},
+ {name:'Daniel Mokoena',title:'Full-Stack Developer',email:'daniel@example.com',phone:'+27 71 555 0188',loc:'Johannesburg, South Africa',web:'github.com/dmokoena',
+  summary:'Full-stack engineer who loves clean APIs and fast interfaces. 6 years building fintech platforms in JavaScript, TypeScript and Python.',
+  exp:[{role:'Software Engineer',co:'PayFlow',dates:'2020 – Present',desc:'Designed payment APIs handling 2M requests a day.\nCut page load time by 45% with code splitting.\nIntroduced automated testing, raising coverage to 90%.'},
+       {role:'Junior Developer',co:'Webcraft',dates:'2018 – 2020',desc:'Built client websites in React and Node.js.'}],
+  edu:[{deg:'BSc Computer Science',school:'University of the Witwatersrand',dates:'2014 – 2017'}],
+  skills:'JavaScript, TypeScript, React, Node.js, Python, PostgreSQL, AWS, Docker',
+  ach:'Open-source maintainer, 1.2k GitHub stars\nHackathon winner, 2022',refs:[{name:'Available on request',info:''}]},
+ {name:'Sophie Williams',title:'Registered Nurse',email:'sophie@example.com',phone:'+44 7700 900123',loc:'Manchester, UK',web:'',
+  summary:'Compassionate ICU nurse with 7 years of experience in high-pressure care. Calm, organised and dedicated to patient-centred outcomes.',
+  exp:[{role:'ICU Nurse',co:'Manchester Royal Infirmary',dates:'2019 – Present',desc:'Care for critically ill patients in a 24-bed unit.\nTrained 15 new nurses in advanced life support.'},
+       {role:'Staff Nurse',co:'St Mary\'s Hospital',dates:'2016 – 2019',desc:'Delivered ward care for up to 30 patients per shift.'}],
+  edu:[{deg:'BSc Nursing',school:'University of Manchester',dates:'2012 – 2016'}],
+  skills:'Critical care, Patient advocacy, ALS certified, Team leadership, Clinical documentation',
+  ach:'Nurse of the Year, 2022\nLed infection-control audit that cut incidents by 18%',refs:[{name:'Dr. A. Patel, Consultant',info:'apatel@mri.example'}]}
+];
+const STATUS=['Wishlist','Applied','Interview','Offer','Rejected'];
+
+let S;
+try{S=JSON.parse(localStorage.getItem('cvgenius'))}catch(e){}
+S=Object.assign({d:structuredClone(SAMPLES[0]),t:'classic',c:COL[0],prem:false,jobs:[],L:{body:''}},S||{});
+const save=()=>{try{localStorage.setItem('cvgenius',JSON.stringify(S))}catch(e){}};
+const tpl=()=>TPL.find(t=>t.id===S.t)||TPL[0];
+
+/* ---------- navigation ---------- */
+const NAV=[['home','🏠','Home'],['build','📄','My CV'],['letter','✉️','Letter'],['track','📋','Tracker'],['price','⭐','Pricing']];
+$('#nav').innerHTML=NAV.map(n=>`<button data-go="${n[0]}"><span>${n[1]}</span>${n[2]}</button>`).join('');
+function go(id){
+ $$('.v').forEach(v=>v.classList.toggle('on',v.id==='v-'+id));
+ $$('nav button').forEach((b,i)=>b.classList.toggle('on',NAV[i][0]===id));
+ scrollTo(0,0);fit();
+ if(id==='track')board();
+}
+function toast(m){const t=$('#toast');t.textContent=m;t.style.display='block';clearTimeout(toast.h);toast.h=setTimeout(()=>t.style.display='none',2200)}
+function gate(msg){ if(S.prem)return true; $('#m-p').textContent=msg; $('#modal').classList.add('on'); return false }
+function setPlan(){const b=$('#plan');b.textContent=S.prem?'★ Premium':'Free plan';b.classList.toggle('pro',S.prem)}
+
+/* ---------- CV render ---------- */
+const list=t=>t.split('\n').map(x=>x.trim()).filter(Boolean);
+function cvHTML(d,t,col){
+ const ct=[d.email,d.phone,d.loc,d.web].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join('');
+ const sk=d.skills.split(',').map(s=>s.trim()).filter(Boolean);
+ const sum=d.summary?`<section><h3>Profile</h3><p>${esc(d.summary)}</p></section>`:'';
+ const exp=d.exp.length?`<section><h3>Experience</h3>${d.exp.map(x=>`<div class="it"><div class="r"><b>${esc(x.role)}</b><i>${esc(x.dates)}</i></div><div class="s">${esc(x.co)}</div>${x.desc?`<p>${esc(x.desc).replace(/\n/g,'<br>')}</p>`:''}</div>`).join('')}</section>`:'';
+ const edu=d.edu.length?`<section><h3>Education</h3>${d.edu.map(x=>`<div class="it"><div class="r"><b>${esc(x.deg)}</b><i>${esc(x.dates)}</i></div><div class="s">${esc(x.school)}</div></div>`).join('')}</section>`:'';
+ const skl=sk.length?`<section><h3>Skills</h3><div class="pl">${sk.map(s=>`<span>${esc(s)}</span>`).join('')}</div></section>`:'';
+ const ach=list(d.ach).length?`<section><h3>Achievements</h3><ul>${list(d.ach).map(a=>`<li>${esc(a)}</li>`).join('')}</ul></section>`:'';
+ const ref=d.refs.length?`<section><h3>References</h3>${d.refs.map(r=>`<div class="it"><b>${esc(r.name)}</b><div>${esc(r.info)}</div></div>`).join('')}</section>`:'';
+ const head=`<header><h1>${esc(d.name)||'Your Name'}</h1><h2>${esc(d.title)}</h2>${t.l!=='left'&&t.l!=='right'?`<div class="ct">${ct}</div>`:''}</header>`;
+ const wm=S.prem?'':'<div class="wm">Created with CVGENIUS</div>';
+ let body;
+ if(t.l==='left'||t.l==='right') body=`<div class="cols"><aside><h3 style="margin-top:0">Contact</h3><div class="ct">${ct}</div>${skl}${ref}</aside><main>${head}${sum}${exp}${edu}${ach}</main></div>`;
+ else body=head+sum+exp+edu+skl+ach+ref;
+ return `<div class="cv ${t.id} L-${t.l}" style="--c:${col}">${body}${wm}</div>`;
+}
+function renderCV(){$('#cvp').innerHTML=cvHTML(S.d,tpl(),S.c);fit();save()}
+
+/* scale A4 page to container */
+function fit(){
+ [['#box1','#cvp'],['#box2','#lp']].forEach(([b,p])=>{
+  const box=$(b),pg=$(p);if(!box.offsetParent)return;
+  const k=Math.min(1,box.clientWidth/794);
+  pg.style.transform=`scale(${k})`;
+  box.style.height=(pg.offsetHeight*k)+'px';
+ });
+}
+addEventListener('resize',fit);
+
+/* ---------- builder UI ---------- */
+function tplStrip(){
+ $('#tpl').innerHTML=TPL.map(t=>`<button class="tc ${t.id===S.t?'on':''}" data-t="${t.id}" style="--ac:${S.c}">${t.f?'':'<em>PRO</em>'}<div class="th ${t.l}"><u></u></div>${t.n}</button>`).join('');
+ $('#sw').innerHTML=COL.map((c,i)=>`<button data-col="${c}" style="background:${c}" class="${c===S.c?'on':''}" aria-label="Colour ${c}">${i>=FREECOL&&!S.prem?'':''}</button>`).join('')+`<input type="color" id="cc" value="${S.c}" title="Custom colour (Premium)">`;
+}
+const F=(k,l,v,ph='')=>`<label>${l}<input data-k="${k}" value="${esc(v)}" placeholder="${ph}"></label>`;
+const T=(k,l,v,r=3,ph='')=>`<label>${l}<textarea rows="${r}" data-k="${k}" placeholder="${ph}">${esc(v)}</textarea></label>`;
+function listEd(key,title,fields,open){
+ const d=S.d;
+ return `<details ${open?'open':''}><summary>${title}</summary><div>${d[key].map((x,i)=>`<div class="card">${fields.map(([f,l,ta])=>ta?T(`${key}.${i}.${f}`,l,x[f],4):F(`${key}.${i}.${f}`,l,x[f])).join('')}<button class="lnk" data-del="${key}.${i}">Remove</button></div>`).join('')}<button class="btn ghost add sm" data-add="${key}">+ Add ${title.toLowerCase().replace(/ history| &.*/,'')}</button></div></details>`;
+}
+function form(){
+ const d=S.d;
+ $('#form').innerHTML=
+ `<details open><summary>Personal information</summary><div>${F('name','Full name',d.name,'Jane Smith')}${F('title','Job title',d.title,'Marketing Manager')}${F('email','Email',d.email)}${F('phone','Phone',d.phone)}${F('loc','Location',d.loc)}${F('web','Website or LinkedIn',d.web)}${T('summary','Profile summary',d.summary,4,'Two or three sentences about you')}</div></details>`+
+ listEd('exp','Employment history',[['role','Job title'],['co','Company'],['dates','Dates (e.g. 2020 – Present)'],['desc','What you did (one line each)',1]])+
+ listEd('edu','Education',[['deg','Qualification'],['school','School or university'],['dates','Dates']])+
+ `<details><summary>Skills</summary><div>${T('skills','Separate skills with commas',d.skills,3,'Excel, Leadership, SEO')}</div></details>`+
+ `<details><summary>Achievements</summary><div>${T('ach','One achievement per line',d.ach,4)}</div></details>`+
+ listEd('refs','References',[['name','Name and role'],['info','Contact details']]);
+}
+$('#form').addEventListener('input',e=>{
+ const k=e.target.dataset.k;if(!k)return;
+ const p=k.split('.');let o=S.d;
+ while(p.length>1)o=o[p.shift()];
+ o[p[0]]=e.target.value;renderCV();
+});
+const BL={exp:{role:'',co:'',dates:'',desc:''},edu:{deg:'',school:'',dates:''},refs:{name:'',info:''}};
+function load(i){S.d=structuredClone(SAMPLES[i]);S.t='classic';S.c=COL[0];refresh();go('build');toast('Sample loaded – edit anything')}
+function refresh(){tplStrip();form();renderCV();setPlan()}
+
+/* ---------- PDF ---------- */
+function printDoc(w){
+ document.body.dataset.p=w;
+ const old=document.title;document.title=(S.d.name||'CV').replace(/\s+/g,'_')+(w==='letter'?'_Cover_Letter':'_CV');
+ setTimeout(()=>{print();document.title=old},50);
+}
+$('#pdf').onclick=()=>{printDoc('cv');toast('Choose "Save as PDF" as the destination')};
+
+/* ---------- cover letter ---------- */
+function letterGen(){
+ const d=S.d,to=$('#l-to').value||'Hiring Manager',co=$('#l-co').value||'your company',role=$('#l-role').value||d.title||'the role';
+ const tone=$('#l-tone').value;
+ const open={Professional:`I am writing to apply for the ${role} position at ${co}.`,Friendly:`I was so pleased to see the ${role} opening at ${co}, and I would love to be part of the team.`,Confident:`I am the ${role} ${co} is looking for, and I would like to show you why.`}[tone];
+ const ach=list(d.ach).slice(0,2).join('; ');
+ const last=d.exp[0];
+ $('#l-body').value=`Dear ${to},\n\n${open}${last?` In my current role as ${last.role} at ${last.co}, I have built a strong record of delivering results.`:''}\n\n${d.summary}\n\n${ach?`Highlights of my career include: ${ach}.\n\n`:''}I would welcome the chance to discuss how my skills${d.skills?` in ${d.skills.split(',').slice(0,3).map(s=>s.trim()).join(', ')}`:''} can help ${co} reach its goals. Thank you for your time and consideration.\n\n${tone==='Friendly'?'Warm regards':'Sincerely'},\n${d.name}`;
+ S.L.body=$('#l-body').value;letterView();
+}
+function letterView(){
+ const d=S.d,dt=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+ $('#lp').innerHTML=`<div class="letter" style="--c:${S.c}"><div class="lh">${esc(d.name)||'Your Name'}</div><small>${[d.email,d.phone,d.loc].filter(Boolean).map(esc).join('  |  ')}</small>${dt}\n\n${esc($('#l-body').value)}</div>`;
+ fit();save();
+}
+$('#l-gen').onclick=()=>{if(gate('The cover letter builder is a Premium feature.'))letterGen()};
+$('#l-body').oninput=letterView;
+$('#l-pdf').onclick=()=>{if(gate('Letter downloads are a Premium feature.'))printDoc('letter')};
+
+/* ---------- tracker ---------- */
+function board(){
+ const j=S.jobs,n=s=>j.filter(x=>x.st===s).length;
+ $('#stats').innerHTML=`<div><b>${j.length}</b>Total</div><div><b>${n('Interview')}</b>Interviews</div><div><b>${n('Offer')}</b>Offers</div>`;
+ $('#board').innerHTML=STATUS.map(s=>`<div class="col"><h4>${s}<span>${n(s)}</span></h4>${j.filter(x=>x.st===s).map(x=>`<div class="job"><b>${esc(x.role)}</b><small>${esc(x.co)}${x.date?' · '+esc(x.date):''}</small>${x.note?`<small>${esc(x.note)}</small>`:''}<select data-mv="${x.id}">${STATUS.map(o=>`<option ${o===x.st?'selected':''}>${o}</option>`).join('')}</select> <button class="lnk" data-rm="${x.id}">Delete</button></div>`).join('')}</div>`).join('');
+}
+$('#j-add').onclick=()=>{
+ const co=$('#j-co').value.trim(),role=$('#j-role').value.trim();
+ if(!co||!role)return toast('Enter a company and a role');
+ if(!S.prem&&S.jobs.length>=5)return gate('Free plan tracks up to 5 applications. Go Premium for unlimited.');
+ S.jobs.push({id:Date.now(),co,role,date:$('#j-date').value,note:$('#j-note').value,st:'Applied'});
+ ['co','role','date','note'].forEach(k=>$('#j-'+k).value='');save();board();toast('Application added');
+};
+$('#board').addEventListener('change',e=>{const id=e.target.dataset.mv;if(id){S.jobs.find(x=>x.id==id).st=e.target.value;save();board()}});
+
+/* ---------- premium / Bitcoin checkout ---------- */
+function buy(){
+ if(S.prem){toast('Premium is already active');return}
+ if(STRIPE_LINK){location.href=STRIPE_LINK;return}
+ $('#m-t').textContent='Pay with Bitcoin';
+ $('#m-p').textContent='Complete the $10 USD annual subscription payment using the address below.';
+ $('#btc-address').value=BITCOIN_ADDRESS;
+ $('#btc-checkout').style.display='block';
+ $('#m-go').style.display='none';
+ $('#modal').classList.add('on');
+}
+$('#buy').onclick=buy;
+$('#m-go').onclick=buy;
+$('#m-x').onclick=()=>{
+ $('#modal').classList.remove('on');
+ $('#btc-checkout').style.display='none';
+ $('#m-go').style.display='block';
+};
+$('#btc-copy').onclick=async()=>{
+ try{
+  await navigator.clipboard.writeText(BITCOIN_ADDRESS);
+  toast('Bitcoin address copied');
+ }catch(err){
+  $('#btc-address').select();
+  document.execCommand('copy');
+  toast('Bitcoin address copied');
+ }
+};
+
+/* ---------- global clicks ---------- */
+document.addEventListener('click',e=>{
+ const b=e.target.closest('button');if(!b)return;const D=b.dataset;
+ if(D.go)go(D.go);
+ if(D.demo!==undefined)load(+D.demo);
+ if(D.pane){$('#bd').classList.toggle('showpv',D.pane==='pv');$$('.seg button').forEach(x=>x.classList.toggle('on',x===b));fit()}
+ if(D.t){const t=TPL.find(x=>x.id===D.t);if(!t.f&&!gate('This template is part of Premium.'))return;S.t=D.t;tplStrip();renderCV()}
+ if(D.col){if(COL.indexOf(D.col)>=FREECOL&&!gate('More colours are part of Premium.'))return;S.c=D.col;tplStrip();renderCV()}
+ if(D.add){S.d[D.add].push({...BL[D.add]});form();renderCV();const ds=$$('#form details');ds.forEach(x=>{if(x.textContent.includes(b.closest('details').firstChild.textContent))x.open=true})}
+ if(D.del){const[k,i]=D.del.split('.');S.d[k].splice(+i,1);form();renderCV();$$('#form details')[{exp:1,edu:2,refs:5}[k]].open=true}
+ if(D.rm){S.jobs=S.jobs.filter(x=>x.id!=D.rm);save();board()}
+});
+document.addEventListener('input',e=>{
+ if(e.target.id==='cc'){if(!S.prem){e.target.value=S.c;return gate('Custom colours are part of Premium.')}S.c=e.target.value;renderCV()}
+});
+$('#reset').onclick=()=>{if(confirm('Clear everything and start from a blank CV?')){S.d=structuredClone(BLANK);refresh()}};
+$('#samples').innerHTML=SAMPLES.map((s,i)=>`<button class="sam" data-demo="${i}"><div class="av">${s.name[0]}</div><div><b>${s.name}</b><small>${s.title}</small></div></button>`).join('');
+
+refresh();go('home');
+if(S.L.body){$('#l-body').value=S.L.body;letterView()}else letterView();
+</script>
+</body>
+</html>
